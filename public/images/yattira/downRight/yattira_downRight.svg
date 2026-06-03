@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="128" height="128" viewBox="0 0 128 128">
+  <rect width="128" height="128" fill="#272727"/>
+  <polygon points="28,18 110,64 28,110 46,64" fill="#f5a" transform="rotate(-135 64 64)"/>
+  <text x="64" y="120" fill="#ffffff" font-size="14" text-anchor="middle" font-family="Arial, sans-serif">DOWN-RIGHT</text>
+</svg>
