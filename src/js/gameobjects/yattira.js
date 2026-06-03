@@ -1,6 +1,7 @@
-import { Vector } from "excalibur"
+import { Vector, Color } from "excalibur"
 import { Resources } from "../resources.js"
 import { Player } from "./player.js"
+import { Undead } from "./undead.js"
 
 const DirectionSprites = {
     idle: Resources.YattiraIdle,
@@ -34,7 +35,8 @@ export class Yattira extends Player {
         const dx = Math.sign(this.vel.x)
         const dy = Math.sign(this.vel.y)
         let direction = "idle"
-
+        //dx = direction on x
+        //dy = direstion on y 
         if (dx === 0 && dy === -1) direction = "up"
         else if (dx === 0 && dy === 1) direction = "down"
         else if (dx === -1 && dy === 0) direction = "left"
@@ -49,4 +51,41 @@ export class Yattira extends Player {
             this.graphics.use(this.sprites[direction].toSprite())
         }
     }
+
+
+
+    wait(ms) {
+        return new Promise(resolve => setTimeout(resolve, ms));
+    }
+
+
+    flashOnHit() {
+        this.actions.flash(Color.White, 100);
+        this.wait(100)
+        this.actions.flash(Color.White, 100);
+        this.wait(100)
+        this.actions.flash(Color.White, 100);
+        this.wait(100)
+        this.actions.flash(Color.White, 100);
+        this.wait(100)
+        this.actions.flash(Color.White, 100);
+        this.wait(100)
+    }
+
+
+
+    onCollisionStart(event, other) {
+
+        console.log("im colliding")
+        if (other.owner instanceof Undead) {
+            other.owner.kill
+            this.health = this.health - 10
+            this.flashOnHit()
+            console.log(`my health is ${this.health}`)
+        }
+    }
+
+
+
+
 }

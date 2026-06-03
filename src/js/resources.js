@@ -1,5 +1,6 @@
 import { ImageSource, Sound, Resource, Loader } from 'excalibur'
 import { Background } from './gameobjects/background'
+import { Enemy } from './gameobjects/enemy'
 
 // voeg hier jouw eigen resources toe
 const Resources = {
@@ -12,6 +13,7 @@ const Resources = {
     YattiraUpRight: new ImageSource('images/yattira/upRight/yattira_upRight.svg'),
     YattiraDownLeft: new ImageSource('images/yattira/downLeft/yattira_downLeft.svg'),
     YattiraDownRight: new ImageSource('images/yattira/downRight/yattira_downRight.svg'),
+    EnemyIdle: new ImageSource('images/enemy/undead/temp_idle.svg'),
     Background: new ImageSource('images/background/backtemp.png')
 }
 

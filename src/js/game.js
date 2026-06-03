@@ -1,9 +1,9 @@
 import '../css/style.css'
-import { Actor, Engine, Vector, DisplayMode, randomIntInRange, ParallaxComponent, Scene } from "excalibur"
+import { Engine, DisplayMode } from "excalibur"
 import { Resources, ResourceLoader } from './resources.js'
-import { Player } from './gameobjects/player.js'
 import { Yattira } from './gameobjects/yattira.js'
 import { Background } from './gameobjects/background.js'
+import { Undead } from './gameobjects/undead.js'
 
 export class Game extends Engine {
 
@@ -23,6 +23,9 @@ export class Game extends Engine {
                 if (ctx && 'imageSmoothingEnabled' in ctx) ctx.imageSmoothingEnabled = false
             }
         })
+
+
+
     }
 
     startGame() {
@@ -31,7 +34,11 @@ export class Game extends Engine {
         this.add(bg)
 
         const player = new Yattira(640, 360)
+        this.player = player
         this.add(player)
+
+        const undead = new Undead()
+        this.add(undead)
 
         // camera is available after the engine/scene has started
         const cam = this.currentScene && this.currentScene.camera ? this.currentScene.camera : this.camera
@@ -42,6 +49,6 @@ export class Game extends Engine {
 
 
 
-}
 
+}
 new Game()
