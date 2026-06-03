@@ -1,7 +1,9 @@
-import { Vector, Color } from "excalibur"
+import { Vector, Color, Keys } from "excalibur"
 import { Resources } from "../resources.js"
 import { Player } from "./player.js"
 import { Undead } from "./undead.js"
+import { Gameover } from './scenes/gameover.js'
+import { Star } from "./items/star.js"
 
 const DirectionSprites = {
     idle: Resources.YattiraIdle,
@@ -20,15 +22,43 @@ export class Yattira extends Player {
         super({ x, y, width: Resources.YattiraIdle.width, height: Resources.YattiraIdle.height })
         this.sprites = DirectionSprites
         this.currentDirection = "idle"
+
     }
 
     onInitialize() {
         this.graphics.use(this.sprites.idle.toSprite())
+
     }
 
     onPostUpdate(engine) {
         super.onPostUpdate(engine)
         this.updateDirectionSprite()
+
+        if (engine.input.keyboard.wasPressed(Keys.Space)) {
+            this.shoot()
+        }
+
+    }
+
+    shoot() {
+        const dirMap = {
+            idle: new Vector(0, -1),
+            up: new Vector(0, -1),
+            down: new Vector(0, 1),
+            left: new Vector(-1, 0),
+            right: new Vector(1, 0),
+            upLeft: new Vector(-1, -1),
+            upRight: new Vector(1, -1),
+            downLeft: new Vector(-1, 1),
+            downRight: new Vector(1, 1)
+        }
+        const rawDir = dirMap[this.currentDirection] || new Vector(0, -1)
+        const dir = rawDir.normalize()
+        const speed = 800
+        const spawnOffset = dir.scale(30)
+        let s = new Star(this.pos.x, this.pos.y, this.pos.x + spawnOffset.x, this.pos.y + spawnOffset.y)
+        s.vel = dir.scale(speed)
+        this.scene.add(s)
     }
 
     updateDirectionSprite() {
@@ -82,6 +112,9 @@ export class Yattira extends Player {
             this.health = this.health - 10
             this.flashOnHit()
             console.log(`my health is ${this.health}`)
+            if (this.health <= 0) {
+                this.scene.engine.goToScene('gameover')
+            }
         }
     }
 

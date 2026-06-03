@@ -4,6 +4,7 @@ import { Resources, ResourceLoader } from './resources.js'
 import { Yattira } from './gameobjects/yattira.js'
 import { Background } from './gameobjects/background.js'
 import { Undead } from './gameobjects/undead.js'
+import { Gameover } from './gameobjects/scenes/gameover.js'
 
 export class Game extends Engine {
 
@@ -43,6 +44,8 @@ export class Game extends Engine {
         // camera is available after the engine/scene has started
         const cam = this.currentScene && this.currentScene.camera ? this.currentScene.camera : this.camera
         if (cam && cam.strategy) cam.strategy.elasticToActor(player, 0.2, 0.6)
+
+        this.add('gameover', new Gameover())
     }
 
 

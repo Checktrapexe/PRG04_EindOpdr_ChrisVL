@@ -14,7 +14,8 @@ const Resources = {
     YattiraDownLeft: new ImageSource('images/yattira/downLeft/yattira_downLeft.svg'),
     YattiraDownRight: new ImageSource('images/yattira/downRight/yattira_downRight.svg'),
     EnemyIdle: new ImageSource('images/enemy/undead/temp_idle.svg'),
-    Background: new ImageSource('images/background/backtemp.png')
+    Background: new ImageSource('images/background/backtemp.png'),
+    Star: new ImageSource('images/items/star/startemp.webp')
 }
 
 

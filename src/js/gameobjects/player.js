@@ -54,9 +54,6 @@ export class Player extends Actor {
 
         this.vel = new Vector(xspeed, yspeed)
 
-        if (engine.input.keyboard.wasPressed(Keys.Space)) {
-
-        }
 
 
     }
