@@ -1,21 +1,23 @@
-import { ImageSource, Sound, Resource, Loader } from 'excalibur'
+import { Gif, ImageSource, Sound, Resource, Loader, SpriteSheet, Sprite } from 'excalibur'
 import { Background } from './gameobjects/background'
 import { Enemy } from './gameobjects/enemy'
 
 // voeg hier jouw eigen resources toe
 const Resources = {
-    YattiraIdle: new ImageSource('images/yattira/idle/yattira_idle.svg'),
-    YattiraUp: new ImageSource('images/yattira/up/yattira_up.svg'),
-    YattiraDown: new ImageSource('images/yattira/down/yattira_down.svg'),
-    YattiraLeft: new ImageSource('images/yattira/left/yattira_left.svg'),
-    YattiraRight: new ImageSource('images/yattira/right/yattira_right.svg'),
-    YattiraUpLeft: new ImageSource('images/yattira/upLeft/yattira_upLeft.svg'),
-    YattiraUpRight: new ImageSource('images/yattira/upRight/yattira_upRight.svg'),
-    YattiraDownLeft: new ImageSource('images/yattira/downLeft/yattira_downLeft.svg'),
-    YattiraDownRight: new ImageSource('images/yattira/downRight/yattira_downRight.svg'),
-    EnemyIdle: new ImageSource('images/enemy/undead/temp_idle.svg'),
-    Background: new ImageSource('images/background/backtemp.png'),
-    Star: new ImageSource('images/items/star/startemp.webp')
+    Slime: new ImageSource('images/enemy/slime/slime.gif'),
+    SlimeFast: new ImageSource('images/enemy/fastSlime/slime_2.gif'),
+    Background: new ImageSource('images/background/snowy_background.png'),
+    Wall: new ImageSource('images/background/wall.png'),
+    YattiraIdle: new ImageSource('images/yattira/idle/yattira_idle.gif'),
+    YattiraUp: new ImageSource('images/yattira/up/Yattira_up.gif'),
+    YattiraDown: new ImageSource('images/yattira/down/Yattira_down.gif'),
+    YattiraLeft: new ImageSource('images/yattira/left/Yattira_left.gif'),
+    YattiraRight: new ImageSource('images/yattira/right/Yattira_right.gif'),
+    YattiraUpLeft: new ImageSource('images/yattira/upLeft/Yattira_up_left.gif'),
+    YattiraUpRight: new ImageSource('images/yattira/upRight/Yattira_up_right.gif'),
+    YattiraDownLeft: new ImageSource('images/yattira/downLeft/Yattira_down_left.gif'),
+    YattiraDownRight: new ImageSource('images/yattira/downRight/Yattira_down_right.gif'),
+    Star: new ImageSource('images/items/star/star1.gif')
 }
 
 

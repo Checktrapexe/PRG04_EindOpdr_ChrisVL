@@ -1,7 +1,6 @@
 import { Actor, Vector } from "excalibur"
 import { Resources } from "../../resources.js"
-
-import { Undead } from "../undead.js"
+import { Slime } from "../slime.js"
 
 export class Star extends Actor {
     constructor(x, y, vx, vy) {
@@ -9,7 +8,7 @@ export class Star extends Actor {
         console.log("im a star")
         this.graphics.use(Resources.Star.toSprite())
         this.vel = new Vector(0, 0)
-        this.scale = new Vector(0.2, 0.2)
+        this.scale = new Vector(.7, .7)
     }
 
     onInitialize(engine) {
@@ -17,11 +16,13 @@ export class Star extends Actor {
     }
 
     onCollisionStart(event, other) {
-        if (other.owner instanceof Undead) {
+        if (other.owner instanceof Slime) {
             other.owner.kill()
             this.kill()
-
-
+            const engine = this.scene?.engine
+            if (engine) {
+                engine.score += 1
+            }
         }
     }
 }

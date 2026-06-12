@@ -1,4 +1,4 @@
-import { Actor, Engine, Vector, DisplayMode, randomIntInRange, Scene } from "excalibur"
+import { Scene, Actor, Vector, Font, FontUnit, Color, Label } from "excalibur"
 
 
 
@@ -12,9 +12,12 @@ export class Gameover extends Scene {
     }
 
     onActivate(ctx) {
-        console.log("---------------------------")
-        console.log("Game Over")
-        console.log("---------------------------")
+        const finalScore = this.engine.score
+        const scoreLabel = new Label({
+            text: `Score: ${finalScore}`,
+            pos: new Vector(540, 360),
+            font: new Font({ size: 36, unit: FontUnit.Px, color: Color.White })
+        })
+        this.add(scoreLabel)
     }
-
 }
