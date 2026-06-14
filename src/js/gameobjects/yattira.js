@@ -10,6 +10,7 @@ import { Star } from "./items/star.js"
 
 
 const PLAYER_HITBOX_SCALE = 1
+const ammo = 20
 const DirectionSprites = {
     idle: Resources.YattiraIdle,
     up: Resources.YattiraUp,
@@ -31,7 +32,7 @@ export class Yattira extends Player {
         this.currentDirection = "idle"
         this._gifScale = PLAYER_HITBOX_SCALE
         this.scale = new Vector(this._gifScale, this._gifScale)
-
+        this.ammo = ammo
     }
 
     onInitialize(engine) {
@@ -81,24 +82,27 @@ export class Yattira extends Player {
     }
 
     shoot() {
-        const dirMap = {
-            idle: new Vector(0, -1),
-            up: new Vector(0, -1),
-            down: new Vector(0, 1),
-            left: new Vector(-1, 0),
-            right: new Vector(1, 0),
-            upLeft: new Vector(-1, -1),
-            upRight: new Vector(1, -1),
-            downLeft: new Vector(-1, 1),
-            downRight: new Vector(1, 1)
+        if (this.ammo > 0) {
+            const dirMap = {
+                idle: new Vector(0, -1),
+                up: new Vector(0, -1),
+                down: new Vector(0, 1),
+                left: new Vector(-1, 0),
+                right: new Vector(1, 0),
+                upLeft: new Vector(-1, -1),
+                upRight: new Vector(1, -1),
+                downLeft: new Vector(-1, 1),
+                downRight: new Vector(1, 1)
+            }
+            const rawDir = dirMap[this.currentDirection] || new Vector(0, -1)
+            const dir = rawDir.normalize()
+            const speed = 800
+            const spawnOffset = dir.scale(30)
+            let s = new Star(this.pos.x, this.pos.y, this.pos.x + spawnOffset.x, this.pos.y + spawnOffset.y)
+            s.vel = dir.scale(speed)
+            this.ammo = this.ammo - 1
+            this.scene.add(s)
         }
-        const rawDir = dirMap[this.currentDirection] || new Vector(0, -1)
-        const dir = rawDir.normalize()
-        const speed = 800
-        const spawnOffset = dir.scale(30)
-        let s = new Star(this.pos.x, this.pos.y, this.pos.x + spawnOffset.x, this.pos.y + spawnOffset.y)
-        s.vel = dir.scale(speed)
-        this.scene.add(s)
     }
 
     updateDirectionSprite() {
@@ -237,9 +241,11 @@ export class Yattira extends Player {
     onCollisionStart(event, other) {
 
         console.log("im colliding")
+
         if (other.owner instanceof Slime) {
             other.owner.kill
             this.health = this.health - 10
+            this.scene.ui.updateHP(this.health)
             this.flashOnHit()
             console.log(`my health is ${this.health}`)
             if (this.health <= 0) {
@@ -248,6 +254,8 @@ export class Yattira extends Player {
                 this.scene.engine.goToScene('gameover')
             }
         }
+
+
     }
 
 

@@ -8,6 +8,7 @@ const Resources = {
     SlimeFast: new ImageSource('images/enemy/fastSlime/slime_2.gif'),
     Background: new ImageSource('images/background/snowy_background.png'),
     Wall: new ImageSource('images/background/wall.png'),
+    Wall2: new ImageSource('images/background/wall2.png'),
     YattiraIdle: new ImageSource('images/yattira/idle/yattira_idle.gif'),
     YattiraUp: new ImageSource('images/yattira/up/Yattira_up.gif'),
     YattiraDown: new ImageSource('images/yattira/down/Yattira_down.gif'),
@@ -17,7 +18,8 @@ const Resources = {
     YattiraUpRight: new ImageSource('images/yattira/upRight/Yattira_up_right.gif'),
     YattiraDownLeft: new ImageSource('images/yattira/downLeft/Yattira_down_left.gif'),
     YattiraDownRight: new ImageSource('images/yattira/downRight/Yattira_down_right.gif'),
-    Star: new ImageSource('images/items/star/star1.gif')
+    Star: new ImageSource('images/items/star/star1.gif'),
+    ammo: new ImageSource('images/items/ammo/star2.gif')
 }
 
 

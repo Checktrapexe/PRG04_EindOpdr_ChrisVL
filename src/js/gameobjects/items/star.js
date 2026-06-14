@@ -23,6 +23,7 @@ export class Star extends Actor {
             if (engine) {
                 engine.score += 1
             }
+            this.scene.ui.updateScore(engine.score)
         }
     }
 }
